@@ -13,12 +13,20 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def get_values(self):
+        """
+        Get New Config Parameters
+        :return:
+        """
         res = super(ResConfigSettings, self).get_values()
         res['main_route'] = self.env['ir.config_parameter'].sudo().get_param('vertical_hospital.main_route')
         res['patient_route'] = self.env['ir.config_parameter'].sudo().get_param('vertical_hospital.patient_route')
         return res
 
     def set_values(self):
+        """
+        Set New Config Parameters
+        :return:
+        """
         super(ResConfigSettings, self).set_values()
         self.env['ir.config_parameter'].sudo().set_param('vertical_hospital.main_route', self.main_route)
         self.env['ir.config_parameter'].sudo().set_param('vertical_hospital.patient_route', self.patient_route)

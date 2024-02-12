@@ -17,6 +17,10 @@ class HospitalPatient(models.Model):
     treatment_id = fields.Many2one('hospital.treatment', string='Treatment')
 
     def default_get(self, fields_list):
+        """
+        :param fields_list:
+        :return:
+        """
         defaults = super().default_get(fields_list)
         if 'name' in defaults:
             defaults['name'] = self.env['ir.sequence'].next_by_code('hospital.patient')
@@ -24,6 +28,10 @@ class HospitalPatient(models.Model):
 
     @api.constrains('dni')
     def _check_dni(self):
+        """
+        Validation if DNI has only numbers
+        :return:
+        """
         for rec in self:
             if rec.dni:
                 if not re.match(r'^[0-9]+$', rec.dni):

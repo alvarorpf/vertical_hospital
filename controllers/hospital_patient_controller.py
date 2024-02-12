@@ -6,6 +6,14 @@ class PatientController(http.Controller):
 
     @http.route('/<string:main_route>/<string:specific_route>/<int:dni>', auth='public', type='http', methods=['GET'])
     def patient_consult(self, main_route, specific_route, dni, **kwargs):
+        """
+        Route to consult patient information
+        :param main_route:
+        :param specific_route:
+        :param dni:
+        :param kwargs:
+        :return:
+        """
         route = "%s/%s" % (main_route, specific_route)
         main = request.env['ir.config_parameter'].sudo().get_param('vertical_hospital.main_route')
         specific = request.env['ir.config_parameter'].sudo().get_param('vertical_hospital.patient_route')
