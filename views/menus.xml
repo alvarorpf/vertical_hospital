@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_vertical_hospital"
+              name="Hospital"
+              web_icon="vertical_hospital,static/description/icon.png"
+              sequence="10"/>
+
+    <menuitem id="menu_hospital_config"
+              name="Configuration"
+              parent="menu_vertical_hospital"
+              sequence="100"/>
+
+    <record id="action_vertical_hospital_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'vertical_hospital', 'bin_size': False}</field>
+    </record>
+
+    <menuitem id="menu_fridge_global_settings"
+              name="Settings"
+              parent="menu_hospital_config"
+              sequence="100"
+              action="action_vertical_hospital_configuration"
+              groups="base.group_system"/>
+</odoo>

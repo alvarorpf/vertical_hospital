@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hospital_treatment_tree" model="ir.ui.view">
+            <field name="name">views.hospital.treatment.tree</field>
+            <field name="model">hospital.treatment</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="doctor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_hospital_treatment_form" model="ir.ui.view">
+            <field name="name">views.hospital.treatment.form</field>
+            <field name="model">hospital.treatment</field>
+            <field name="arch" type="xml">
+                <form string="Treatment">
+                    <sheet>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="doctor"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="hospital_treatment_action" model="ir.actions.act_window">
+            <field name="name">Treatment</field>
+            <field name="res_model">hospital.treatment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_hospital_treatment"
+                  name="Treatments"
+                  action="hospital_treatment_action"
+                  parent="menu_vertical_hospital"
+                  sequence="20"/>
+    </data>
+</odoo>

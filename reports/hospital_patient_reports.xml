@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_hospital_patient_report" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">vertical_hospital.report_hospital_patient</field>
+        <field name="report_file">vertical_hospital.report_hospital_patient</field>
+        <field name="print_report_name">'Patients List'</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_hospital_patient">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h2 class="mt-4">
+                        <span t-if="len(docs) > 1">Patients List</span>
+                        <span t-else="">Patient</span>
+                    </h2>
+                    <table class="table table-sm o_main_table table-borderless mt-4">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th>Name</th>
+                                <th>Patient Name</th>
+                                <th>DNI</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.patient_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.dni"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.state"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
