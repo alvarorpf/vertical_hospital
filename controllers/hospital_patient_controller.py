@@ -4,8 +4,8 @@ import json
 
 class PatientController(http.Controller):
 
-    @http.route('/<string:main_route>/<string:specific_route>/<int:dni>', auth='public', type='http', methods=['GET'])
-    def patient_consult(self, main_route, specific_route, dni, **kwargs):
+    @http.route('/<string:main_route>/<string:specific_route>/<int:sequence>', auth='public', type='http', methods=['GET'])
+    def patient_consult(self, main_route, specific_route, sequence, **kwargs):
         """
         Route to consult patient information
         :param main_route:
@@ -19,7 +19,7 @@ class PatientController(http.Controller):
         specific = request.env['ir.config_parameter'].sudo().get_param('vertical_hospital.patient_route')
         config_route = "%s/%s" % (main, specific)
         if route == config_route:
-            patient = request.env['hospital.patient'].sudo().search([('dni', '=', dni)])
+            patient = request.env['hospital.patient'].sudo().search([('name', '=', sequence)])
             if patient:
                 data = {
                     'seq': patient.name,
