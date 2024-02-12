@@ -34,7 +34,7 @@
                             <group>
                                 <field name="patient_name"/>
                                 <field name="dni"/>
-                                <field name="treatment_id"/>
+                                <field name="treatment_id" options="{'no_create':True,'no_create_edit':True}"/>
                             </group>
                             <group>
                                 <field name="create_date"/>
